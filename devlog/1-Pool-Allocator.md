@@ -68,7 +68,7 @@ template <class T> struct PoolAllocator {
 // ...
 };
 
-``` ```
+```
 
 When the pool allocator is deconstructed, the index is used as the invarient of a for loop, so each block is freed using it's pointer in the array.
 
