@@ -1,15 +1,15 @@
 Log 1 / Asset management using a pool allocator
 ===============================================
 
-# Note about data types in C/C++ for this project
+## Note about data types in C/C++ for this project
 
 C and C++'s default primative type systems can be messy especially the integers. Depending on the platform `int` could refer to a range of bit widths. Luckily the types defined in `stdint.h`/`cstdint` have a fixed width, making them less ambigous than default integer types, for example `uint32_t` will always be a 32-bit integer type. To make the code a bit more readble, I've put together a header file `ldata.h` that shortens some of these names, making them reminicient of modern languages like Zig and Rust. For simplicity, all primative types (exept `void`) will use these type aliases to make the code more readable.
 
-# Note about style
+## Note about style
 
 I am quite pedantic about my own coding style for unknown reasons to myself. Generally I dislike overuse of OOP features and prefer a simple imperitive/functional style for my own code. That being said I won't pretend that sometines OOP can't be the best solution to a problem so I will be using it throughout this project.
 
-# A pool allocator
+## A pool allocator
 
 Being able to manage memory in a game can be tricky, especially in unmanaged languages like C or C++. One common misstep is to overuse C's `malloc`/`free` or C++ vectors to hold large amounts of dynamicly stored structures in a game, because frequent allocation and deallocation can lead to tanking performance. In addition, memory leaks can corrupt or crash the game so I want to avoid that at all costs. A way of storing large ammounts of smaller structs (e.g. enemy data) is the pool allocator, which has a typical allocation/ deallocation complexity of O(1). A lovely article on pool allocation (for which I based my own implementation) is [Writing a Pool Allocator](http://dmitrysoshnikov.com/compilers/writing-a-pool-allocator/). The article explains the implementation better than I ever could, so give it a read if you have a minute.
 
@@ -93,20 +93,20 @@ template <class T> struct PoolAllocator {
 };
 ```
 
-# Testing
+## Testing
 
 I used the same structure as the article for testing to see if my allocator works correctly. To organise my code, I'm keeping all of my utilities in a namespace `llib` for use in the project, and for demonstration I have a static variable `lpool_log_level` which can be set an enum value to show allocator operations. The test code creates a pool allocator with 2 blocks containing 8 chunks each, allocates 10 items and the deallocates the same 10 items.
 
 ```c++ 
 // Test code
 
-#include "../headers/ldata.h"
-#include "../headers/lpool.hpp"
-#include <cstdio>
-#include <cstdlib>
-#include <algorithm>
-#include <array>
-#include <iterator>
+##include "../headers/ldata.h"
+##include "../headers/lpool.hpp"
+##include <cstdio>
+##include <cstdlib>
+##include <algorithm>
+##include <array>
+##include <iterator>
 
 namespace example {
     // An example item that could be allocated in a game
@@ -199,13 +199,13 @@ Freeing Block: 0x55ec814ee350
 Full Implementation:
 ```c++
 // Based on http://dmitrysoshnikov.com/compilers/writing-a-pool-allocator/
-#ifndef LPOOL_HPP
-#define LPOOL_HPP
+##ifndef LPOOL_HPP
+##define LPOOL_HPP
 
-#include <cstddef> 
-#include <cstdlib>
-#include <cstdio>
-#include "ldata.h"
+##include <cstddef> 
+##include <cstdlib>
+##include <cstdio>
+##include "ldata.h"
 
 namespace llib {
     enum LPoolLogLevel {
@@ -402,6 +402,6 @@ namespace llib {
     };    
 }
 
-#endif
+##endif
 
 ```
