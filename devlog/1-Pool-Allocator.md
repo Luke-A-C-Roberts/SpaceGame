@@ -3,7 +3,7 @@ Log 1 / Asset management using a pool allocator
 
 ## Note about data types in C/C++ for this project
 
-C and C++'s default primative type systems can be messy especially the integers. Depending on the platform `int` could refer to a range of bit widths. Luckily the types defined in `stdint.h`/`cstdint` have a fixed width, making them less ambigous than default integer types, for example `uint32_t` will always be a 32-bit integer type. To make the code a bit more readble, I've put together a header file `ldata.h` that shortens some of these names, making them reminicient of modern languages like Zig and Rust. For simplicity, all primative types (exept `void`) will use these type aliases to make the code more readable.
+C and C++'s default primative type systems can be messy especially the integers. Depending on the platform `int` could refer to a range of bit widths. Luckily the types defined in `stdint.h`/`cstdint` have a fixed width, making them less ambigous than default integer types, for example `uint32_t` will always be a 32-bit integer type. To make the code a bit more readble, I've put together a header file `ldata.h` that shortens some of these names, making them reminicient of modern languages like Zig and Rust. For simplicity, all primative types (exept `void`) will use these type aliases to make the code more readable. In cases where I need to work with an external C API I will also use the normal type system.
 
 ## Note about style
 
